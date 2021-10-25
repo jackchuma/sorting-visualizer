@@ -11,7 +11,7 @@ function App() {
   const generateArray = () => {
     let arr = [];
     for (let i=0; i<sliderVal; i++) {
-      arr.push(Math.floor(Math.random() * 500));
+      arr.push(Math.floor(Math.random() * 450 + 50));
     }
     setArray(arr);
   }
