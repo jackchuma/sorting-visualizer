@@ -5,6 +5,7 @@ import { IoIosArrowDown } from 'react-icons/io';
 function App() {
 
   const [selectedSort, setSelectedSort] = useState({name: 'Bubble Sort', id: 'bubble-sort'});
+  const [sliderVal, setSliderVal] = useState(50);
 
   const handleArraySizeButtonClick = () => {
     const sliderBox = document.getElementById('array-slider');
@@ -24,6 +25,10 @@ function App() {
     } else {
       sortBox.style.display = 'flex';
     }
+  }
+
+  const moveSlider = e => {
+    setSliderVal(e.target.value);
   }
 
   const handleSortListButtonClick = e => {
@@ -49,7 +54,7 @@ function App() {
         <div className='array-size'>
           <button className='array-size-button' onClick={handleArraySizeButtonClick}>Change Array Size <IoIosArrowDown /></button>
           <div className='array-slider' id='array-slider'>
-            <input type='range' min='0.1' max='1' value='0.5' className='slider' />
+            <input type='range' className='slider' onChange={moveSlider} />
           </div>
         </div>
         <button className="sort-button">Sort!</button>
@@ -63,6 +68,7 @@ function App() {
         </div>
       </div>
       <h1>Jack's Sorting Algorithm Visualizer</h1>
+      {sliderVal}
     </div>
   );
 }
