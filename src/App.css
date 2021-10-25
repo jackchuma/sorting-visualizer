@@ -121,3 +121,23 @@ html {
   color: hsla(34, 80%, 50%, 1);
   background-color: hsla(202, 21%, 50%, 1);
 }
+
+.sorting-view-container {
+  display: flex;
+  justify-content: center;
+}
+
+.sorting-view {
+  background-color: hsla(202, 21%, 50%, 1);
+  height: 500px;
+  width: 1000px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.rectangle {
+  background-color: hsla(34, 80%, 50%, 1);
+  width: 10px;
+  height: 50px;
+}

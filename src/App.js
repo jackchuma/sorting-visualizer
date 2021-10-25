@@ -6,6 +6,15 @@ function App() {
 
   const [selectedSort, setSelectedSort] = useState({name: 'Bubble Sort', id: 'bubble-sort'});
   const [sliderVal, setSliderVal] = useState(50);
+  const [array, setArray] = useState([]);
+
+  const generateArray = () => {
+    let arr = [];
+    for (let i=0; i<sliderVal; i++) {
+      arr.push(Math.floor(Math.random() * 500));
+    }
+    setArray(arr);
+  }
 
   const handleArraySizeButtonClick = () => {
     const sliderBox = document.getElementById('array-slider');
@@ -29,6 +38,7 @@ function App() {
 
   const moveSlider = e => {
     setSliderVal(e.target.value);
+    generateArray();
   }
 
   const handleSortListButtonClick = e => {
@@ -50,7 +60,7 @@ function App() {
   return (
     <div className="App">
       <div className="navbar">
-        <button className='array-button'>Generate New Array</button>
+        <button className='array-button' onClick={generateArray}>Generate New Array</button>
         <div className='array-size'>
           <button className='array-size-button' onClick={handleArraySizeButtonClick}>Change Array Size <IoIosArrowDown /></button>
           <div className='array-slider' id='array-slider'>
@@ -68,7 +78,13 @@ function App() {
         </div>
       </div>
       <h1>Jack's Sorting Algorithm Visualizer</h1>
-      {sliderVal}
+      <div className='sorting-view-container'>
+        <div className='sorting-view'>
+          {array.map((val) => {
+            return <div className='rectangle' style={{height: val + 'px'}}></div>
+          })}
+        </div>
+      </div>
     </div>
   );
 }
