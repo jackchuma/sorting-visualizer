@@ -64,7 +64,7 @@ function App() {
         <div className='array-size'>
           <button className='array-size-button' onClick={handleArraySizeButtonClick}>Change Array Size <IoIosArrowDown /></button>
           <div className='array-slider' id='array-slider'>
-            <input type='range' className='slider' onChange={moveSlider} />
+            <input type='range' className='slider' min='10' onChange={moveSlider} />
           </div>
         </div>
         <button className="sort-button">Sort!</button>
@@ -81,7 +81,7 @@ function App() {
       <div className='sorting-view-container'>
         <div className='sorting-view'>
           {array.map((val) => {
-            return <div className='rectangle' style={{height: val + 'px'}}></div>
+            return <div className='rectangle' style={{height: val + 'px', width: (1000 / array.length - 5) + 'px'}}></div>
           })}
         </div>
       </div>
