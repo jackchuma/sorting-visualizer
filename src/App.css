@@ -1,38 +1,123 @@
-.App {
+html {
   text-align: center;
+  background-color: hsla(202, 21%, 80%, 1);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.navbar {
+  background-color: hsla(202, 60%, 30%, 1);
+  height: 50px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.array-button {
+  margin-right: 100px;
+  background-color: hsla(202, 60%, 80%, 1);
+  border: none;
+  height: 30px;
+  border-radius: 15px;
+  padding: 0 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.array-size {
+  background-color: hsla(202, 21%, 80%, 1);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: top;
+  height: 30px;
+  border-radius: 15px;
+}
+
+.array-size-button {
+  background-color: hsla(202, 60%, 80%, 1);
+  height: 30px;
+  border: none;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  border-radius: 15px;
+  gap: 5px;
+}
+
+.array-slider {
+  border: 1px solid hsla(202, 21%, 50%, 1);
+  display: none;
+  background-color: hsla(202, 21%, 80%, 1);
+  z-index: 2;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px 0 rgba(28, 28, 28, 0.2);
+  position: absolute;
+  margin-top: 30px;
+}
+
+.slider {
+  padding: 10px 10px;
+}
+
+.slider::-webkit-slider-thumb {
+  cursor: pointer;
+}
+
+.sort-button {
+  background-color: hsla(34, 80%, 50%, 1);
+  padding: 10px 20px;
+  border-radius: 3px;
+  margin-left: 100px;
+  margin-right: 100px;
+  border: none;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.sort-menu {
+  background-color: hsla(202, 21%, 80%, 1);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: top;
+  height: 30px;
+  border-radius: 15px;
+}
+
+.sort-button-visible {
+  background-color: hsla(202, 60%, 80%, 1);
+  min-height: 30px;
+  border: none;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 15px;
+  gap: 5px;
+}
+
+.sort-list {
+  border: 1px solid hsla(202, 21%, 50%, 1);
+  display: none;
+  flex-direction: column;
+  background-color: hsla(202, 21%, 80%, 1);
+  z-index: 2;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px 0 rgba(28, 28, 28, 0.2);
+  position: absolute;
+  margin-top: 30px;
+  overflow: hidden;
+}
+
+.sort-list button {
+  background-color: hsla(202, 21%, 80%, 1);
+  text-align: left;
+  border: none;
+  padding: 5px 20px;
+  letter-spacing: 0.5px;
+}
+
+.sort-list button:hover {
+  background-color: hsla(202, 21%, 50%, 1);
+}
+
+#bubble-sort {
+  color: hsla(34, 80%, 50%, 1);
+  background-color: hsla(202, 21%, 50%, 1);
 }
