@@ -55,6 +55,55 @@ function App() {
     sortBox.style.display = 'none';
   }
 
+  const bubbleSort = async input => {
+    let swapping = true;
+    while (swapping) {
+      swapping = false;
+      for (let i=0; i<input.length-1; i++) {
+        let first = document.getElementById(i);
+        let next = document.getElementById(i+1);
+
+        if (input[i] > input[i+1]) {
+          first.style.backgroundColor = 'green';
+          next.style.backgroundColor = 'red';
+          swap(input, i, i+1);
+          await sleep(5);
+          first.style.order = `${i}`;
+          first.id = i+1;
+          next.style.order = `${i-1}`;
+          next.id = i;
+          await sleep(5);
+          swapping = true;
+        } else {
+          first.style.backgroundColor = 'red';
+          next.style.backgroundColor = 'green';
+          await sleep(5);
+        }
+        
+        first.style.backgroundColor = 'hsla(34, 80%, 50%, 1)';
+        next.style.backgroundColor = 'hsla(34, 80%, 50%, 1)';
+      }
+      setArray(input);
+    }
+    return input;
+  }
+
+  const swap = (arr, indexOne, indexTwo) => {
+    const temp = arr[indexTwo];
+    arr[indexTwo] = arr[indexOne];
+    arr[indexOne] = temp;
+  }
+
+  const handleSort = () => {
+    if (selectedSort.name === 'Bubble Sort') {
+      bubbleSort(array);
+    }
+  }
+
+  const sleep = time => {
+    return new Promise(resolve => setTimeout(resolve, time));
+  }
+
   const sortList = [{name: 'Bubble Sort', id: 'bubble-sort'}, {name: 'Quick Sort', id: 'quick-sort'}, {name: 'Merge Sort', id: 'merge-sort'}];
 
   return (
@@ -67,7 +116,7 @@ function App() {
             <input type='range' className='slider' min='10' onChange={moveSlider} />
           </div>
         </div>
-        <button className="sort-button">Sort!</button>
+        <button className="sort-button" onClick={handleSort}>Sort!</button>
         <div className="sort-menu" id="sort-menu">
           <button className='sort-button-visible' onClick={handleSortButtonClick}>{selectedSort.name} <IoIosArrowDown /></button>
           <div className='sort-list' id='sort-list'>
@@ -80,8 +129,8 @@ function App() {
       <h1>Jack's Sorting Algorithm Visualizer</h1>
       <div className='sorting-view-container'>
         <div className='sorting-view'>
-          {array.map((val) => {
-            return <div className='rectangle' style={{height: val + 'px', width: (1000 / array.length - 5) + 'px'}}></div>
+          {array.map((val, index) => {
+            return <div className='rectangle' key={index} id={index} style={{height: val + 'px', width: (1000 / array.length - 5) + 'px', order: index+1}}></div>
           })}
         </div>
       </div>
