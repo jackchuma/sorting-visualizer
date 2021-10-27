@@ -88,6 +88,32 @@ function App() {
     return input;
   }
 
+  const mergeSort = input => {
+    const length = input.length;
+    if (length === 1) {
+      return input;
+    }
+    const mid = Math.floor(length / 2);
+    const leftArray = input.slice(0, mid);
+    const rightArray = input.slice(mid, length);
+    
+    return merge(mergeSort(leftArray), mergeSort(rightArray));
+  }
+
+  const merge = (leftArray, rightArray) => {
+    const sortedArray = [];
+    while (leftArray.length > 0 && rightArray.length > 0) {
+      
+      if (leftArray[0] < rightArray[0]) {
+        sortedArray.push(leftArray.shift());
+      } else {
+        sortedArray.push(rightArray.shift());
+      }
+    }
+    setArray(sortedArray.concat(leftArray).concat(rightArray));
+    return sortedArray.concat(leftArray).concat(rightArray);
+  }
+
   const swap = (arr, indexOne, indexTwo) => {
     const temp = arr[indexTwo];
     arr[indexTwo] = arr[indexOne];
@@ -97,6 +123,8 @@ function App() {
   const handleSort = () => {
     if (selectedSort.name === 'Bubble Sort') {
       bubbleSort(array);
+    } else if (selectedSort.name === 'Merge Sort') {
+      mergeSort(array);
     }
   }
 
