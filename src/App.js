@@ -178,6 +178,73 @@ function App() {
     }
   }
 
+  const quickSort = async input => {
+    //let swapping = true;
+    let pivotIndex = 0;
+    while (pivotIndex < input.length) {
+      //swapping = false;
+      let swapped = await pivotSplit(input, pivotIndex);
+      if (swapped === false) {
+        pivotIndex++;
+      }
+
+      //Update "input" array to new order
+      let containerDiv = document.getElementById('sorting-view');
+      let rectangles = containerDiv.getElementsByTagName('div');
+      let newOrder = [];
+      for (let r=1; r<rectangles.length+1; r++) {
+        for (let k=0; k<rectangles.length; k++) {
+          let rec = rectangles[k];
+          if (parseInt(rec.style.order) === r) {
+            newOrder.push(rectangles[k].clientHeight);
+          }
+        }
+      }
+      console.log(newOrder);
+      input = newOrder;
+    }
+    colorRectangle(0, input.length, 'green');
+    await sleep(500);
+    colorRectangle(0, input.length, 'hsla(34, 80%, 50%, 1');
+  }
+
+  const pivotSplit = async (input, pivotIndex) => {
+    let swapped = false;
+    colorRectangle(pivotIndex, 1, 'hsla(202, 60%, 30%, 1)');
+    let lessOrder = pivotIndex + 1;
+    for (let i=pivotIndex+1; i<input.length; i++) {
+      colorRectangle(i, 1, 'red');
+      await sleep(1);
+
+      if (input[i] < input[pivotIndex]) {
+        let rec = document.getElementById(i);
+        rec.style.order = `${lessOrder}`;
+        rec.id = 'temp';
+
+        for (let j=i-1; j>lessOrder-2; j--) {
+          let bump = document.getElementById(j);
+          bump.style.order++;
+          bump.id++;
+        }
+        rec.id = lessOrder - 1;
+        lessOrder++;
+        colorRectangle(lessOrder-2, 1, 'green');
+        await sleep(1);
+        colorRectangle(lessOrder-2, 1, 'hsla(34, 80%, 50%, 1');
+        swapped = true;
+      } else {
+        colorRectangle(i, 1, 'green');
+        await sleep(1);
+        colorRectangle(i, 1, 'hsla(34, 80%, 50%, 1');
+      }
+    }
+    if (swapped === true) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   const colorRectangle = (id, length, color) => {
     for (let i=0; i<length; i++) {
       let rec = document.getElementById(id + i);
@@ -196,6 +263,8 @@ function App() {
       bubbleSort(array);
     } else if (selectedSort.name === 'Merge Sort') {
       mergeSort(array);
+    } else if (selectedSort.name === 'Quick Sort') {
+      quickSort(array);
     }
   }
 
