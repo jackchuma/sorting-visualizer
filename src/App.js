@@ -9,6 +9,7 @@ function App() {
   const [array, setArray] = useState([]);
 
   const generateArray = () => {
+    setArray([]);
     let arr = [];
     for (let i=0; i<sliderVal; i++) {
       arr.push(Math.floor(Math.random() * 450 + 50));
@@ -68,9 +69,9 @@ function App() {
           next.style.backgroundColor = 'red';
           swap(input, i, i+1);
           await sleep(5);
-          first.style.order = `${i}`;
+          first.style.order = `${i+2}`;
           first.id = i+1;
-          next.style.order = `${i-1}`;
+          next.style.order = `${i+1}`;
           next.id = i;
           await sleep(5);
           swapping = true;
@@ -88,30 +89,100 @@ function App() {
     return input;
   }
 
-  const mergeSort = input => {
-    const length = input.length;
-    if (length === 1) {
-      return input;
+  const mergeSort = async input => {
+    let swapping = true;
+    let increment = 2;
+    let arrayIncrement = 1;
+    while (swapping) {
+      //swapping = false;
+      for (let i=0; i<input.length-1; i+=increment) {
+
+        //Generate Left and Right Arrays to Compare
+        let leftArray = input.slice(i,i+arrayIncrement);
+        let leftLength = leftArray.length;
+        let rightArray = input.slice(i+arrayIncrement, i+increment);
+        let rightLength = rightArray.length;
+
+        //Exit condition for while loop
+        if (leftArray.length + rightArray.length === input.length) {
+          swapping = false;
+        }
+
+        //Set color to red before sorted
+        colorRectangle(i, leftArray.length, 'red');
+        colorRectangle(i+arrayIncrement, rightArray.length, 'red');
+        await sleep(10);
+
+        //Loop or function to merge two sorted arrays
+        await mergeArrays(input, leftArray, rightArray, i, i+arrayIncrement);
+
+        //Set color to green after sorted
+        colorRectangle(i, leftLength, 'green');
+        colorRectangle(i+arrayIncrement, rightLength, 'green');
+        await sleep(10);
+
+        //Return to original orange color before moving on to next set of rectangles
+        colorRectangle(i, leftLength, 'hsla(34, 80%, 50%, 1)');
+        colorRectangle(i+arrayIncrement, rightLength, 'hsla(34, 80%, 50%, 1)');
+      }
+
+      //Update "input" array to new order
+      let containerDiv = document.getElementById('sorting-view');
+      let rectangles = containerDiv.getElementsByTagName('div');
+      let newOrder = [];
+      for (let r=1; r<rectangles.length+1; r++) {
+        for (let k=0; k<rectangles.length; k++) {
+          let rec = rectangles[k];
+          if (parseInt(rec.style.order) === r) {
+            newOrder.push(rectangles[k].clientHeight);
+          }
+        }
+      }
+      input = newOrder;
+      increment*=2;
+      arrayIncrement*=2;
     }
-    const mid = Math.floor(length / 2);
-    const leftArray = input.slice(0, mid);
-    const rightArray = input.slice(mid, length);
-    
-    return merge(mergeSort(leftArray), mergeSort(rightArray));
   }
 
-  const merge = (leftArray, rightArray) => {
-    const sortedArray = [];
+  const mergeArrays = async (input, leftArray, rightArray, leftIndex, rightIndex) => {
+    let order = leftIndex + 1;
     while (leftArray.length > 0 && rightArray.length > 0) {
-      
-      if (leftArray[0] < rightArray[0]) {
-        sortedArray.push(leftArray.shift());
+      if (leftArray[0] > rightArray[0]) {
+        //Bring rightArray[0] rectangle to current order
+        let right = document.getElementById(rightIndex);
+        right.style.order = `${order}`;
+        right.id = 'temp';
+        let temp = input[rightIndex];
+
+        //Shift each leftArray rectangle to right
+        for (let i=rightIndex-1; i>leftIndex-1; i--) {
+          input[i+1] = input[i];
+          let bump = document.getElementById(i);
+          bump.style.order++;
+          bump.id++;
+        }
+
+        input[leftIndex] = temp;
+        right.id = leftIndex;
+        rightArray.shift();
+        await sleep(10);
+        rightIndex++;
+        leftIndex++;
       } else {
-        sortedArray.push(rightArray.shift());
+        //Leave leftArray[0] in current order
+        leftArray.shift();
+        leftIndex++;
       }
+      //Iterate to next order value
+      order++;
     }
-    setArray(sortedArray.concat(leftArray).concat(rightArray));
-    return sortedArray.concat(leftArray).concat(rightArray);
+  }
+
+  const colorRectangle = (id, length, color) => {
+    for (let i=0; i<length; i++) {
+      let rec = document.getElementById(id + i);
+      rec.style.backgroundColor = color;
+    }
   }
 
   const swap = (arr, indexOne, indexTwo) => {
@@ -156,9 +227,9 @@ function App() {
       </div>
       <h1>Jack's Sorting Algorithm Visualizer</h1>
       <div className='sorting-view-container'>
-        <div className='sorting-view'>
+        <div className='sorting-view' id='sorting-view'>
           {array.map((val, index) => {
-            return <div className='rectangle' key={index} id={index} style={{height: val + 'px', width: (1000 / array.length - 5) + 'px', order: index+1}}></div>
+            return <div className='rectangle' value={val} key={index} id={index} style={{height: val + 'px', width: (1000 / array.length - 5) + 'px', order: index+1}}></div>
           })}
         </div>
       </div>
