@@ -149,13 +149,11 @@ h1 {
   letter-spacing: 0.5px;
 }
 
+.sort-list button.selected,
 .sort-list button:hover {
-  background-color: hsla(202, 21%, 50%, 1);
-}
-
-#bubble-sort {
   color: hsla(34, 80%, 50%, 1);
   background-color: hsla(202, 21%, 50%, 1);
+  cursor: pointer;
 }
 
 .sorting-view-container {

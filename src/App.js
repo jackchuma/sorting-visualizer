@@ -1,12 +1,26 @@
 import React, { useState } from 'react';
 import './App.css';
 import { IoIosArrowDown } from 'react-icons/io';
+/*
+To-do:
+  - Fix bug with sorting algorithm menu hover
+  - Fix bug that forces user to refresh page between each sort
+  - Make website responsive to screen size
+  - Write testing
+  - Comment code for easy digestion
+  - Update ReadMe file on GitHub
+*/
 
 function App() {
 
   const [selectedSort, setSelectedSort] = useState({name: 'Bubble Sort', id: 'bubble-sort'});
   const [sliderVal, setSliderVal] = useState(50);
   const [array, setArray] = useState([]);
+
+  if (selectedSort.name === 'Bubble Sort') {
+    let rec = document.getElementById('bubble-sort');
+    rec.className = 'selected';
+  }
 
   const generateArray = () => {
     setArray([]);
@@ -44,13 +58,11 @@ function App() {
 
   const handleSortListButtonClick = e => {
     const oldLink = document.getElementById(selectedSort.id);
-    oldLink.style.backgroundColor = 'hsla(202, 21%, 80%, 1)';
-    oldLink.style.color = 'black';
+    oldLink.className = '';
     setSelectedSort({name: e.target.value, id: e.target.id});
 
     const newLink = document.getElementById(e.target.id);
-    newLink.style.color = 'hsla(34, 80%, 50%, 1)';
-    newLink.style.backgroundColor = 'hsla(202, 21%, 50%, 1)';
+    newLink.className = 'selected';
 
     const sortBox = document.getElementById('sort-list');
     sortBox.style.display = 'none';
@@ -185,10 +197,8 @@ function App() {
   }
 
   const quickSort = async input => {
-    //let swapping = true;
     let pivotIndex = 0;
     while (pivotIndex < input.length) {
-      //swapping = false;
       let swapped = await pivotSplit(input, pivotIndex);
       if (swapped === false) {
         pivotIndex++;
@@ -295,7 +305,7 @@ function App() {
           <button className='sort-button-visible button' onClick={handleSortButtonClick}>{selectedSort.name} <IoIosArrowDown /></button>
           <div className='sort-list' id='sort-list'>
             {sortList.map((sortName) => {
-              return <button className='button' key={sortName.id} id={sortName.id} value={sortName.name} onClick={handleSortListButtonClick}>{sortName.name}</button>
+              return <button key={sortName.id} id={sortName.id} value={sortName.name} onClick={handleSortListButtonClick}>{sortName.name}</button>
             })}
           </div>
         </div>
