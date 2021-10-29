@@ -86,6 +86,9 @@ function App() {
       }
       setArray(input);
     }
+    colorRectangle(0, input.length, 'green');
+    await sleep(500);
+    colorRectangle(0, input.length, 'hsla(34, 80%, 50%, 1');
     return input;
   }
 
@@ -142,6 +145,9 @@ function App() {
       increment*=2;
       arrayIncrement*=2;
     }
+    colorRectangle(0, input.length, 'green');
+    await sleep(500);
+    colorRectangle(0, input.length, 'hsla(34, 80%, 50%, 1');
   }
 
   const mergeArrays = async (input, leftArray, rightArray, leftIndex, rightIndex) => {
@@ -277,19 +283,19 @@ function App() {
   return (
     <div className="App">
       <div className="navbar">
-        <button className='array-button' onClick={generateArray}>Generate New Array</button>
+        <button className='array-button button' onClick={generateArray}>Generate New Array</button>
         <div className='array-size'>
-          <button className='array-size-button' onClick={handleArraySizeButtonClick}>Change Array Size <IoIosArrowDown /></button>
+          <button className='array-size-button button' onClick={handleArraySizeButtonClick}>Change Array Size <IoIosArrowDown /></button>
           <div className='array-slider' id='array-slider'>
             <input type='range' className='slider' min='10' onChange={moveSlider} />
           </div>
         </div>
         <button className="sort-button" onClick={handleSort}>Sort!</button>
         <div className="sort-menu" id="sort-menu">
-          <button className='sort-button-visible' onClick={handleSortButtonClick}>{selectedSort.name} <IoIosArrowDown /></button>
+          <button className='sort-button-visible button' onClick={handleSortButtonClick}>{selectedSort.name} <IoIosArrowDown /></button>
           <div className='sort-list' id='sort-list'>
             {sortList.map((sortName) => {
-              return <button key={sortName.id} id={sortName.id} value={sortName.name} onClick={handleSortListButtonClick}>{sortName.name}</button>
+              return <button className='button' key={sortName.id} id={sortName.id} value={sortName.name} onClick={handleSortListButtonClick}>{sortName.name}</button>
             })}
           </div>
         </div>

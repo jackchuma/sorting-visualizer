@@ -1,7 +1,11 @@
 html {
   text-align: center;
-  color: hsla(202, 60%, 30%, 1);
+  color: hsla(202, 100%, 10%, 1);
   background-color: hsla(202, 21%, 80%, 1);
+}
+
+.button:hover {
+  background-color: hsla(202, 30%, 80%, 1);
 }
 
 h1 {
@@ -9,7 +13,7 @@ h1 {
 }
 
 .navbar {
-  background-color: hsla(202, 60%, 30%, 1);
+  background-color: hsla(202, 100%, 10%, 1);
   height: 50px;
   display: flex;
   justify-content: center;
@@ -27,6 +31,11 @@ h1 {
 
 .array-button:hover {
   cursor: pointer;
+  transform: scale(1.1);
+}
+
+.array-button:active {
+  transform: scale(1);
 }
 
 .array-size {
@@ -75,7 +84,7 @@ h1 {
 }
 
 .sort-button {
-  background-color: hsla(34, 80%, 50%, 1);
+  background-color: hsla(34, 100%, 50%, 1);
   padding: 10px 20px;
   border-radius: 3px;
   margin-left: 100px;
@@ -86,7 +95,12 @@ h1 {
 }
 
 .sort-button:hover {
+  transform: scale(1.1);
   cursor: pointer;
+}
+
+.sort-button:active {
+  transform: scale(1);
 }
 
 .sort-menu {
@@ -156,7 +170,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  border: 3px solid hsla(202, 60%, 30%, 1);
+  border: 3px solid hsla(202, 100%, 10%, 1);
 }
 
 .rectangle {
