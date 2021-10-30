@@ -9,6 +9,7 @@ To-do:
   - Write testing
   - Comment code for easy digestion
   - Update ReadMe file on GitHub
+  - Deploy to GitHub pages
 */
 
 function App() {
@@ -295,14 +296,44 @@ function App() {
     return new Promise(resolve => setTimeout(resolve, time));
   }
 
+  const handleHiddenSliderClick = () => {
+    let slider = document.getElementById('hidden-slider');
+    if (slider.style.display === 'none') {
+      slider.style.display = 'flex';
+    } else {
+      slider.style.display = 'none';
+    }
+  }
+
+  const handleHiddenSortClick = () => {
+    let hiddenList = document.getElementById('hidden-sort-list');
+    if (hiddenList.style.display === 'none') {
+      hiddenList.style.display = 'flex';
+    } else {
+      hiddenList.style.display = 'none';
+    }
+  }
+
+  const handleHiddenSortOptionClick = e => {
+    setSelectedSort({name: e.target.value, id: e.target.id});
+    let hiddenList = document.getElementById('hidden-sort-list');
+    hiddenList.style.display = 'none';
+  }
+
   const sortList = [{name: 'Bubble Sort', id: 'bubble-sort'}, {name: 'Quick Sort', id: 'quick-sort'}, {name: 'Merge Sort', id: 'merge-sort'}];
 
   return (
     <div className="App">
       <div className='hidden-nav' id='hidden-nav'>
         <button className='hidden-nav-button' onClick={generateArray}>Generate New Array</button>
-        <button className='hidden-nav-button hidden-arrow'>Change Array Size <IoIosArrowDown /></button>
-        <button className='hidden-nav-button hidden-arrow'>{selectedSort.name} <IoIosArrowDown /></button>
+        <button className='hidden-nav-button hidden-arrow' onClick={handleHiddenSliderClick}>Change Array Size <IoIosArrowDown /></button>
+        <input type='range' id='hidden-slider' className='hidden-nav-button hidden-nav-slider' min='10' onChange={moveSlider} />
+        <button className='hidden-nav-button hidden-arrow' onClick={handleHiddenSortClick}>{selectedSort.name} <IoIosArrowDown /></button>
+        <div className='hidden-sort-list' id='hidden-sort-list'>
+          {sortList.map((sortName) => {
+            return <button className='hidden-nav-button' key={sortName.id} value={sortName.name} onClick={handleHiddenSortOptionClick}>{sortName.name}</button>
+          })}
+        </div>
       </div>
       <div className="navbar">
         <div className="navbar-left">

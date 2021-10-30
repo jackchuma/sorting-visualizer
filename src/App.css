@@ -45,6 +45,16 @@ h1 {
   color:hsla(202, 100%, 10%, 1);
 }
 
+.hidden-sort-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.hidden-sort-button {
+  
+}
+
 .hidden-arrow {
   gap: 5px;
   display: flex;
