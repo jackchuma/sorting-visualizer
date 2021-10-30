@@ -1,6 +1,15 @@
 import React, { useState } from 'react';
 import './App.css';
 import { IoIosArrowDown } from 'react-icons/io';
+import { BiMenu } from 'react-icons/bi';
+
+/*
+To-do:
+  - Make website responsive to screen size
+  - Write testing
+  - Comment code for easy digestion
+  - Update ReadMe file on GitHub
+*/
 
 function App() {
 
@@ -15,6 +24,15 @@ function App() {
       arr.push(Math.floor(Math.random() * 450 + 50));
     }
     await setArray(arr);
+  }
+
+  const handleHamburger = () => {
+    let menu = document.getElementById('hidden-nav');
+    if (parseInt(menu.style.left) === 0) {
+      menu.style.left = '-200px';
+    } else {
+      menu.style.left = '0';
+    }
   }
 
   const clearArray = async () => {
@@ -281,21 +299,31 @@ function App() {
 
   return (
     <div className="App">
+      <div className='hidden-nav' id='hidden-nav'>
+        <button className='hidden-nav-button' onClick={generateArray}>Generate New Array</button>
+        <button className='hidden-nav-button hidden-arrow'>Change Array Size <IoIosArrowDown /></button>
+        <button className='hidden-nav-button hidden-arrow'>{selectedSort.name} <IoIosArrowDown /></button>
+      </div>
       <div className="navbar">
-        <button className='array-button button' onClick={generateArray}>Generate New Array</button>
-        <div className='array-size'>
-          <button className='array-size-button button' onClick={handleArraySizeButtonClick}>Change Array Size <IoIosArrowDown /></button>
-          <div className='array-slider' id='array-slider'>
-            <input type='range' className='slider' min='10' onChange={moveSlider} />
-          </div>
+        <div className="navbar-left">
+          <button className="hamburger" onClick={handleHamburger}><BiMenu /></button>
         </div>
-        <button className="sort-button" onClick={handleSort}>Sort!</button>
-        <div className="sort-menu" id="sort-menu">
-          <button className='sort-button-visible button' onClick={handleSortButtonClick}>{selectedSort.name} <IoIosArrowDown /></button>
-          <div className='sort-list' id='sort-list'>
-            {sortList.map((sortName) => {
-              return <button key={sortName.id} id={sortName.id} value={sortName.name} onClick={handleSortListButtonClick}>{sortName.name}</button>
-            })}
+        <div className='navbar-right'>
+          <button className='array-button button' onClick={generateArray}>Generate New Array</button>
+          <div className='array-size'>
+            <button className='array-size-button button' onClick={handleArraySizeButtonClick}>Change Array Size <IoIosArrowDown /></button>
+            <div className='array-slider' id='array-slider'>
+              <input type='range' className='slider' min='10' onChange={moveSlider} />
+            </div>
+          </div>
+          <button className="sort-button" onClick={handleSort}>Sort!</button>
+          <div className="sort-menu" id="sort-menu">
+            <button className='sort-button-visible button' onClick={handleSortButtonClick}>{selectedSort.name} <IoIosArrowDown /></button>
+            <div className='sort-list' id='sort-list'>
+              {sortList.map((sortName) => {
+                return <button key={sortName.id} id={sortName.id} value={sortName.name} onClick={handleSortListButtonClick}>{sortName.name}</button>
+              })}
+            </div>
           </div>
         </div>
       </div>

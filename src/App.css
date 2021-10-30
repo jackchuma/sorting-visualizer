@@ -12,12 +12,71 @@ h1 {
   color: hsla(202, 60%, 15%, 1)
 }
 
+.hidden-nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+  align-items: center;
+  position: fixed;
+  height: 100%;
+  width: 200px;
+  background-color: hsla(202, 100%, 10%, 1);
+  color: white;
+  padding-top: 50px;
+  border: 1px solid hsla(202, 100%, 10%, 1);
+  left: -200px;
+  transition: left 1s;
+}
+
+.hidden-nav-button {
+  height: 30px;
+  background-color:hsla(202, 100%, 10%, 1);
+  color: white;
+  border: none;
+  width: 100%;
+}
+
+.hidden-nav-button:hover {
+  cursor: pointer;
+  background-color: hsla(202, 21%, 80%, 1);
+}
+
+.hidden-nav-button:active {
+  color:hsla(202, 100%, 10%, 1);
+}
+
+.hidden-arrow {
+  gap: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .navbar {
   background-color: hsla(202, 100%, 10%, 1);
   height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.navbar-left {
+  display: none;
+}
+
+.navbar-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hamburger {
+  background-color: hsla(202, 100%, 10%, 1);
+  color: white;
+  border: none;
+  display: none;
+  left: 0;
+  transform: scale(1.8);
 }
 
 .array-button {
@@ -173,6 +232,55 @@ h1 {
 
 .rectangle {
   background-color: hsla(34, 80%, 50%, 1);
-  width: 10px;
-  height: 50px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .sorting-view {
+    width: 75%;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .navbar-left {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  }
+
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    justify-content: right;
+  }
+
+  .sort-button {
+    margin-right: 15%;
+  }
+
+  .array-button {
+    display: none;
+  }
+
+  .array-size {
+    display: none;
+  }
+
+  .sort-menu {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 30px;
+  }
+
+  .hamburger:hover {
+    background-color: hsla(202, 30%, 50%, 1);
+    cursor: pointer;
+  }
 }
