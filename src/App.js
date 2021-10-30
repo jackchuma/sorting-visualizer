@@ -1,15 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
 import { IoIosArrowDown } from 'react-icons/io';
-/*
-To-do:
-  - Fix bug with sorting algorithm menu hover
-  - Fix bug that forces user to refresh page between each sort
-  - Make website responsive to screen size
-  - Write testing
-  - Comment code for easy digestion
-  - Update ReadMe file on GitHub
-*/
 
 function App() {
 
@@ -17,18 +8,17 @@ function App() {
   const [sliderVal, setSliderVal] = useState(50);
   const [array, setArray] = useState([]);
 
-  if (selectedSort.name === 'Bubble Sort') {
-    let rec = document.getElementById('bubble-sort');
-    rec.className = 'selected';
-  }
-
-  const generateArray = () => {
-    setArray([]);
+  const generateArray = async () => {
     let arr = [];
+    await clearArray();
     for (let i=0; i<sliderVal; i++) {
       arr.push(Math.floor(Math.random() * 450 + 50));
     }
-    setArray(arr);
+    await setArray(arr);
+  }
+
+  const clearArray = async () => {
+    await setArray([]);
   }
 
   const handleArraySizeButtonClick = () => {
@@ -109,7 +99,6 @@ function App() {
     let increment = 2;
     let arrayIncrement = 1;
     while (swapping) {
-      //swapping = false;
       for (let i=0; i<input.length-1; i+=increment) {
 
         //Generate Left and Right Arrays to Compare
