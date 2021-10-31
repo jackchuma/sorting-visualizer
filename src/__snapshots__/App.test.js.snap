@@ -1,0 +1,254 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App renders without crashing 1`] = `
+<div
+  className="App"
+>
+  <div
+    className="hidden-nav"
+    id="hidden-nav"
+  >
+    <button
+      className="hidden-nav-button"
+      onClick={[Function]}
+    >
+      Generate New Array
+    </button>
+    <button
+      className="hidden-nav-button hidden-arrow"
+      onClick={[Function]}
+    >
+      Change Array Size 
+      <svg
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        strokeWidth="0"
+        style={
+          Object {
+            "color": undefined,
+          }
+        }
+        viewBox="0 0 512 512"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M256 294.1L383 167c9.4-9.4 24.6-9.4 33.9 0s9.3 24.6 0 34L273 345c-9.1 9.1-23.7 9.3-33.1.7L95 201.1c-4.7-4.7-7-10.9-7-17s2.3-12.3 7-17c9.4-9.4 24.6-9.4 33.9 0l127.1 127z"
+        />
+      </svg>
+    </button>
+    <input
+      className="hidden-nav-button hidden-nav-slider"
+      id="hidden-slider"
+      min="10"
+      onChange={[Function]}
+      type="range"
+    />
+    <button
+      className="hidden-nav-button hidden-arrow"
+      onClick={[Function]}
+    >
+      Bubble Sort
+       
+      <svg
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        strokeWidth="0"
+        style={
+          Object {
+            "color": undefined,
+          }
+        }
+        viewBox="0 0 512 512"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M256 294.1L383 167c9.4-9.4 24.6-9.4 33.9 0s9.3 24.6 0 34L273 345c-9.1 9.1-23.7 9.3-33.1.7L95 201.1c-4.7-4.7-7-10.9-7-17s2.3-12.3 7-17c9.4-9.4 24.6-9.4 33.9 0l127.1 127z"
+        />
+      </svg>
+    </button>
+    <div
+      className="hidden-sort-list"
+      id="hidden-sort-list"
+    >
+      <button
+        className="hidden-nav-button"
+        onClick={[Function]}
+        value="Bubble Sort"
+      >
+        Bubble Sort
+      </button>
+      <button
+        className="hidden-nav-button"
+        onClick={[Function]}
+        value="Quick Sort"
+      >
+        Quick Sort
+      </button>
+      <button
+        className="hidden-nav-button"
+        onClick={[Function]}
+        value="Merge Sort"
+      >
+        Merge Sort
+      </button>
+    </div>
+  </div>
+  <div
+    className="navbar"
+  >
+    <div
+      className="navbar-left"
+    >
+      <button
+        className="hamburger"
+        onClick={[Function]}
+      >
+        <svg
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          strokeWidth="0"
+          style={
+            Object {
+              "color": undefined,
+            }
+          }
+          viewBox="0 0 24 24"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      className="navbar-right"
+    >
+      <button
+        className="array-button button"
+        onClick={[Function]}
+      >
+        Generate New Array
+      </button>
+      <div
+        className="array-size"
+      >
+        <button
+          className="array-size-button button"
+          onClick={[Function]}
+        >
+          Change Array Size 
+          <svg
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            strokeWidth="0"
+            style={
+              Object {
+                "color": undefined,
+              }
+            }
+            viewBox="0 0 512 512"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M256 294.1L383 167c9.4-9.4 24.6-9.4 33.9 0s9.3 24.6 0 34L273 345c-9.1 9.1-23.7 9.3-33.1.7L95 201.1c-4.7-4.7-7-10.9-7-17s2.3-12.3 7-17c9.4-9.4 24.6-9.4 33.9 0l127.1 127z"
+            />
+          </svg>
+        </button>
+        <div
+          className="array-slider"
+          id="array-slider"
+        >
+          <input
+            className="slider"
+            min="10"
+            onChange={[Function]}
+            type="range"
+          />
+        </div>
+      </div>
+      <button
+        className="sort-button"
+        onClick={[Function]}
+      >
+        Sort!
+      </button>
+      <div
+        className="sort-menu"
+        id="sort-menu"
+      >
+        <button
+          className="sort-button-visible button"
+          onClick={[Function]}
+        >
+          Bubble Sort
+           
+          <svg
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            strokeWidth="0"
+            style={
+              Object {
+                "color": undefined,
+              }
+            }
+            viewBox="0 0 512 512"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M256 294.1L383 167c9.4-9.4 24.6-9.4 33.9 0s9.3 24.6 0 34L273 345c-9.1 9.1-23.7 9.3-33.1.7L95 201.1c-4.7-4.7-7-10.9-7-17s2.3-12.3 7-17c9.4-9.4 24.6-9.4 33.9 0l127.1 127z"
+            />
+          </svg>
+        </button>
+        <div
+          className="sort-list"
+          id="sort-list"
+        >
+          <button
+            id="bubble-sort"
+            onClick={[Function]}
+            value="Bubble Sort"
+          >
+            Bubble Sort
+          </button>
+          <button
+            id="quick-sort"
+            onClick={[Function]}
+            value="Quick Sort"
+          >
+            Quick Sort
+          </button>
+          <button
+            id="merge-sort"
+            onClick={[Function]}
+            value="Merge Sort"
+          >
+            Merge Sort
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h1>
+    Jack's Sorting Algorithm Visualizer
+  </h1>
+  <div
+    className="sorting-view-container"
+  >
+    <div
+      className="sorting-view"
+      id="sorting-view"
+    />
+  </div>
+</div>
+`;

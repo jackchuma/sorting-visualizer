@@ -5,7 +5,6 @@ import { BiMenu } from 'react-icons/bi';
 
 /*
 To-do:
-  - Make website responsive to screen size
   - Write testing
   - Comment code for easy digestion
   - Update ReadMe file on GitHub
