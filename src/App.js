@@ -5,18 +5,18 @@ import { BiMenu } from 'react-icons/bi';
 
 /*
 To-do:
-  - Write testing
-  - Comment code for easy digestion
   - Update ReadMe file on GitHub
   - Deploy to GitHub pages
 */
 
 function App() {
 
+  //State variables
   const [selectedSort, setSelectedSort] = useState({name: 'Bubble Sort', id: 'bubble-sort'});
   const [sliderVal, setSliderVal] = useState(50);
   const [array, setArray] = useState([]);
 
+  //Function to generate a new array of values between 50 and 500.  These numbers will be used as the height attribute for the rectangles
   const generateArray = async () => {
     let arr = [];
     await clearArray();
@@ -26,6 +26,7 @@ function App() {
     await setArray(arr);
   }
 
+  //Function that opens the hidden menu on screens that are thinner than 850px
   const handleHamburger = () => {
     let menu = document.getElementById('hidden-nav');
     if (parseInt(menu.style.left) === 0) {
@@ -35,10 +36,12 @@ function App() {
     }
   }
 
+  //Function to clear the array state
   const clearArray = async () => {
     await setArray([]);
   }
 
+  //Function that toggles opening and closing the slider in the top nav menu
   const handleArraySizeButtonClick = () => {
     const sliderBox = document.getElementById('array-slider');
 
@@ -49,6 +52,7 @@ function App() {
     }
   }
 
+  //Function that toggles opening and closing the list of sort algorithms in the top nav menu
   const handleSortButtonClick = e => {
     const sortBox = document.getElementById('sort-list');
 
@@ -59,11 +63,13 @@ function App() {
     }
   }
 
+  //Function that updates the array state as the slider is moved
   const moveSlider = e => {
     setSliderVal(e.target.value);
     generateArray();
   }
 
+  //Function to handle selecting a sort algorithm from the dropdown menu
   const handleSortListButtonClick = e => {
     const oldLink = document.getElementById(selectedSort.id);
     oldLink.className = '';
@@ -76,42 +82,72 @@ function App() {
     sortBox.style.display = 'none';
   }
 
+  //Bubble Sort Algorithm Visualizer
   const bubbleSort = async input => {
     let swapping = true;
+
+    //while loop runs as long as swaps are made
     while (swapping) {
       swapping = false;
       for (let i=0; i<input.length-1; i++) {
         let first = document.getElementById(i);
         let next = document.getElementById(i+1);
 
+        //always checking if a value is higher than the following value
         if (input[i] > input[i+1]) {
-          first.style.backgroundColor = 'green';
-          next.style.backgroundColor = 'red';
+
+          //Sets color of current rectangle to green and following rectangle to red then swaps the values in the input array
+          colorRectangle(i, 1, 'green');
+          colorRectangle(i+1, 1, 'red');
           swap(input, i, i+1);
+
+          //5ms pause to allow the user to see what is happening
           await sleep(5);
+
+          //Code to swap the position of the two rectangles
           first.style.order = `${i+2}`;
           first.id = i+1;
           next.style.order = `${i+1}`;
           next.id = i;
+
+          //5ms pause
           await sleep(5);
+
           swapping = true;
         } else {
-          first.style.backgroundColor = 'red';
-          next.style.backgroundColor = 'green';
+
+          //if the current value is smaller than the following value, then the current rectangle will be colored red, the next will be colored green, then the code will move on
+          colorRectangle(i, 1, 'red');
+          colorRectangle(i+1, 1, 'green');
+
+          //5ms pause
           await sleep(5);
         }
         
-        first.style.backgroundColor = 'hsla(34, 80%, 50%, 1)';
-        next.style.backgroundColor = 'hsla(34, 80%, 50%, 1)';
+        //return the background color of both rectangles to their original color before moving on
+        colorRectangle(i, 1, 'hsla(34, 80%, 50%, 1)');
+        colorRectangle(i+1, 1, 'hsla(34, 80%, 50%, 1)');
       }
+
+      //update array state
       setArray(input);
     }
+
+    //Color all rectangles green at the end of the function to show they have completed sorting, pause for 0.5s then return to original color
     colorRectangle(0, input.length, 'green');
     await sleep(500);
     colorRectangle(0, input.length, 'hsla(34, 80%, 50%, 1');
     return input;
   }
 
+  //Function to swap array values in bubble sort
+  const swap = (arr, indexOne, indexTwo) => {
+    const temp = arr[indexTwo];
+    arr[indexTwo] = arr[indexOne];
+    arr[indexOne] = temp;
+  }
+
+  //Merge Sort Visualizer function
   const mergeSort = async input => {
     let swapping = true;
     let increment = 2;
@@ -135,7 +171,7 @@ function App() {
         colorRectangle(i+arrayIncrement, rightArray.length, 'red');
         await sleep(10);
 
-        //Loop or function to merge two sorted arrays
+        //Function to merge two sorted arrays
         await mergeArrays(input, leftArray, rightArray, i, i+arrayIncrement);
 
         //Set color to green after sorted
@@ -169,10 +205,12 @@ function App() {
     colorRectangle(0, input.length, 'hsla(34, 80%, 50%, 1');
   }
 
+  //Function to merge two sorted arrays for Merge Sort
   const mergeArrays = async (input, leftArray, rightArray, leftIndex, rightIndex) => {
     let order = leftIndex + 1;
     while (leftArray.length > 0 && rightArray.length > 0) {
       if (leftArray[0] > rightArray[0]) {
+
         //Bring rightArray[0] rectangle to current order
         let right = document.getElementById(rightIndex);
         right.style.order = `${order}`;
@@ -190,6 +228,8 @@ function App() {
         input[leftIndex] = temp;
         right.id = leftIndex;
         rightArray.shift();
+
+        //10ms pause
         await sleep(10);
         rightIndex++;
         leftIndex++;
@@ -203,9 +243,12 @@ function App() {
     }
   }
 
+  //Quick Sort Algorithm Visualizer
   const quickSort = async input => {
     let pivotIndex = 0;
     while (pivotIndex < input.length) {
+
+      //Calls function to split based on pivot value - moves all values smaller than pivot value to before the pivot rectangle.  Returns false if nothing gets moved
       let swapped = await pivotSplit(input, pivotIndex);
       if (swapped === false) {
         pivotIndex++;
@@ -223,7 +266,6 @@ function App() {
           }
         }
       }
-      console.log(newOrder);
       input = newOrder;
     }
     colorRectangle(0, input.length, 'green');
@@ -231,19 +273,27 @@ function App() {
     colorRectangle(0, input.length, 'hsla(34, 80%, 50%, 1');
   }
 
+  //Function to split array based on pivot value
   const pivotSplit = async (input, pivotIndex) => {
     let swapped = false;
+
+    //Color pivot rectangle blue
     colorRectangle(pivotIndex, 1, 'hsla(202, 60%, 30%, 1)');
     let lessOrder = pivotIndex + 1;
     for (let i=pivotIndex+1; i<input.length; i++) {
+
+      //Rectangle being compared to pivot rectangle gets colored red
       colorRectangle(i, 1, 'red');
       await sleep(1);
 
       if (input[i] < input[pivotIndex]) {
+
+        //Move current rectangle to before pivot rectangle
         let rec = document.getElementById(i);
         rec.style.order = `${lessOrder}`;
         rec.id = 'temp';
 
+        //Shift each rectangle between pivot and current forward one spot to keep the rest of the array in order
         for (let j=i-1; j>lessOrder-2; j--) {
           let bump = document.getElementById(j);
           bump.style.order++;
@@ -251,6 +301,8 @@ function App() {
         }
         rec.id = lessOrder - 1;
         lessOrder++;
+
+        //Color the moved rectangle green, pause for 1ms then return to original color
         colorRectangle(lessOrder-2, 1, 'green');
         await sleep(1);
         colorRectangle(lessOrder-2, 1, 'hsla(34, 80%, 50%, 1');
@@ -261,6 +313,8 @@ function App() {
         colorRectangle(i, 1, 'hsla(34, 80%, 50%, 1');
       }
     }
+
+    //Returns true if a swap was made, false if not
     if (swapped === true) {
       return true;
     } else {
@@ -268,6 +322,7 @@ function App() {
     }
   }
 
+  //Function that changes the background color of rectangles
   const colorRectangle = (id, length, color) => {
     for (let i=0; i<length; i++) {
       let rec = document.getElementById(id + i);
@@ -275,12 +330,7 @@ function App() {
     }
   }
 
-  const swap = (arr, indexOne, indexTwo) => {
-    const temp = arr[indexTwo];
-    arr[indexTwo] = arr[indexOne];
-    arr[indexOne] = temp;
-  }
-
+  //Function to handle sorting the rectangles based on which sorting algorithm is selected
   const handleSort = () => {
     if (selectedSort.name === 'Bubble Sort') {
       bubbleSort(array);
@@ -291,10 +341,12 @@ function App() {
     }
   }
 
+  //Function used to create delays in the algorithm visualizer functions
   const sleep = time => {
     return new Promise(resolve => setTimeout(resolve, time));
   }
 
+  //Function to toggle viewing the slider bar in the hidden side menu on smaller screen sizes
   const handleHiddenSliderClick = () => {
     let slider = document.getElementById('hidden-slider');
     if (slider.style.display === 'none') {
@@ -304,6 +356,7 @@ function App() {
     }
   }
 
+  //Function to toggle viewing the sort algorithm options in the hidden side menu on smaller screen sizes
   const handleHiddenSortClick = () => {
     let hiddenList = document.getElementById('hidden-sort-list');
     if (hiddenList.style.display === 'none') {
@@ -313,12 +366,14 @@ function App() {
     }
   }
 
+  //Function that updates state based on which sort algorithm is selected in hidden menu
   const handleHiddenSortOptionClick = e => {
     setSelectedSort({name: e.target.value, id: e.target.id});
     let hiddenList = document.getElementById('hidden-sort-list');
     hiddenList.style.display = 'none';
   }
 
+  //Array of sort algorithm options
   const sortList = [{name: 'Bubble Sort', id: 'bubble-sort'}, {name: 'Quick Sort', id: 'quick-sort'}, {name: 'Merge Sort', id: 'merge-sort'}];
 
   return (
