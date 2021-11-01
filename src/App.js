@@ -5,8 +5,8 @@ import { BiMenu } from 'react-icons/bi';
 
 /*
 To-do:
-  - Update ReadMe file on GitHub
-  - Deploy to GitHub pages
+  - Adjust height of rectangles for mobile version
+  - Update Sort function to close any menus if they are open
 */
 
 function App() {

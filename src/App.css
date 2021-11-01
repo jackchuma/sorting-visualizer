@@ -266,6 +266,10 @@ h1 {
     justify-content: right;
   }
 
+  .rectangle {
+    transform: scaleX(0.5);
+  }
+
   .sort-button {
     margin-right: 15%;
   }
