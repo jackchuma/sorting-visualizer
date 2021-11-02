@@ -3,12 +3,6 @@ import './App.css';
 import { IoIosArrowDown } from 'react-icons/io';
 import { BiMenu } from 'react-icons/bi';
 
-/*
-To-do:
-  - Adjust height of rectangles for mobile version
-  - Update Sort function to close any menus if they are open
-*/
-
 function App() {
 
   //State variables
@@ -332,6 +326,19 @@ function App() {
 
   //Function to handle sorting the rectangles based on which sorting algorithm is selected
   const handleSort = () => {
+
+    //Close any opened menus
+    let hiddenNav = document.getElementById('hidden-nav');
+    let arraySlider = document.getElementById('array-slider');
+    let sortList = document.getElementById('sort-list');
+    if (arraySlider.style.display !== 'none' || sortList.style.display !== 'none') {
+      arraySlider.style.display = 'none';
+      sortList.style.display = 'none';
+    }
+    if (parseInt(hiddenNav.style.left) === 0) {
+      hiddenNav.style.left = '-200px';
+    }
+
     if (selectedSort.name === 'Bubble Sort') {
       bubbleSort(array);
     } else if (selectedSort.name === 'Merge Sort') {
