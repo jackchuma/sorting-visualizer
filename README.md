@@ -7,7 +7,7 @@
 - Once all the options have been selected, the user clicks the "Sort!" button and watches the rectangles get sorted right in front of them.
 - This is a responsive web app that has been optimized for all screen sizes
 - On smaller screen sizes, it utilizes a hidden menu that can be opened by clicking the hamburger menu icon in the top left of the screen
-- A test suite has been coded using Jest and Enzyme
+- A test suite has been coded using Jest and Enzyme new
 
 ## Relevant Technologies for this Project
 
